@@ -20,5 +20,16 @@ const server = http.createServer(app)
 
 const io = socketIo(server);
 
+io.on('connection', (socket) => {
+  console.log('Users connected: ', io.engine.clientsCount);
+
+  io.sockets.emit('usersConnected', io.engine.clientsCount);
+  
+  socket.emit('statusMessage', 'You have connected.');
+
+  socket.on('disconnect', () => {
+    console.log('A user has disconnected.', io.engine.clientsCount);
+  });
+});
 
 module.exports = server;
