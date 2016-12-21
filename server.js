@@ -42,6 +42,7 @@ io.on('connection', (socket) => {
   io.sockets.emit('usersConnected', io.engine.clientsCount);
   
   socket.emit('statusMessage', 'You have connected.');
+  socket.emit(countVotes(votes));
 
   socket.on('message', (channel, message) => {
     if(channel === 'voteCast') {
