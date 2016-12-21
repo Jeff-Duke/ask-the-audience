@@ -3,6 +3,7 @@
 const http = require('http');
 const express = require('express');
 const socketIo = require('socket.io');
+const _ = require('lodash');
 
 const app = express();
 
@@ -20,5 +21,42 @@ const server = http.createServer(app)
 
 const io = socketIo(server);
 
+let votes = {};
+
+const countVotes = (votes) => {
+  let voteCount = {
+    A: 0,
+    B: 0,
+    C: 0,
+    D: 0
+  };
+  _.forEach(votes, (vote) => {
+    voteCount[vote]++;
+  });
+  io.sockets.emit('voteCount', voteCount);
+};
+
+io.on('connection', (socket) => {
+  console.log('Users connected: ', io.engine.clientsCount);
+
+  io.sockets.emit('usersConnected', io.engine.clientsCount);
+  
+  socket.emit('statusMessage', 'You have connected.');
+
+  socket.on('message', (channel, message) => {
+    if(channel === 'voteCast') {
+      votes[socket.id] = message;
+      socket.emit('youVoted', message);
+      countVotes(votes);
+    }
+  });
+
+  socket.on('disconnect', () => {
+    console.log('A user has disconnected.', io.engine.clientsCount);
+    delete votes[socket.id];
+    console.log(votes);
+    io.sockets.emit('usersConencted', io.engine.clientsCount);
+  });
+});
 
 module.exports = server;
