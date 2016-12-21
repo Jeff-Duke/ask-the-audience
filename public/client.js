@@ -26,7 +26,7 @@ socket.on('voteCount', (votes) => {
 }); 
 
 socket.on('youVoted', (vote) => {
-  yourVote.innerText = 'You voted for: '+vote;
+  yourVote.innerText = vote;
 });
 
 for (let i = 0; i < buttons.length; i++) {
