@@ -10,6 +10,7 @@ const votesC = document.getElementById('C');
 const votesD = document.getElementById('D');
 const yourVote = document.getElementById('your-vote');
 
+
 socket.on('usersConnected', (count) => {
   connectionCount.innerText = 'Connected Users: ' + count;
 });
@@ -34,3 +35,5 @@ for (let i = 0; i < buttons.length; i++) {
     socket.send('voteCast', e.target.innerText);
   });
 }
+
+
