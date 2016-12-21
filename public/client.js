@@ -30,7 +30,7 @@ socket.on('youVoted', (vote) => {
 });
 
 for (let i = 0; i < buttons.length; i++) {
-  buttons[i].addEventListener('click', function () {
-    socket.send('voteCast', this.innerText);
+  buttons[i].addEventListener('click', (e) => {
+    socket.send('voteCast', e.target.innerText);
   });
 }
