@@ -12,7 +12,7 @@ app.get('/', (request, response) => {
   response.sendFile(__dirname + '/public/index.html');
 });
 
-const port = process.env.port || 3000;
+const port = process.env.PORT || 3000;
 
 const server = http.createServer(app)
   .listen(port, () => {
