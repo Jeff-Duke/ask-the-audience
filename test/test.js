@@ -1,7 +1,6 @@
 'use strict';
 const chai = require('chai');
-const assert = chai.assert;
-const should = chai.should;
+const {assert, should} = chai;
 const http = require('http');
 const express = require('express');
 const socketIo = require('socket.io');
