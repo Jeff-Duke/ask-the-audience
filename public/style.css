@@ -1,0 +1,42 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #2D3C4A;
+}
+
+h1, h2, #your-vote {
+  font-family: Lemonada, serif;
+  color: #FF5A00;
+}
+
+h1 {
+  font-size: 2.3em;
+}
+
+
+#status-message, #connection-count, h3, h4 {
+  font-family: Lato, sans-serif;
+  color: #1DD6B5;
+  font-size: 1.2em;
+}
+
+#A, #B, #C, #D {
+  font-family: Lato, sans-serif;
+  color: #F8C453;
+}
+
+button {
+  height: 50px;
+  width: 50px;
+  border: 1px solid #FF5A00;
+  font-family: Lato;
+  font-size: 1.3em;
+  color: white;
+  background-color: #323232;
+}
+
+button:hover {
+  background-color: #3D2C4A;
+}
